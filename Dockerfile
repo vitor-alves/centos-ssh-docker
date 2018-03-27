@@ -2,7 +2,6 @@ FROM centos:centos7
 RUN yum -y install openssh openssh-clients openssh-server
 EXPOSE 2222
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
-RUN ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa
 RUN echo "root:change_me" | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#Port 22/Port 2222/' /etc/ssh/sshd_config
